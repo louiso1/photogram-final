@@ -1,26 +1,26 @@
 # == Schema Information
 #
-# Table name: likes
+# Table name: comments
 #
 #  id         :integer          not null, primary key
+#  body       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  fan_id     :integer
+#  author_id  :integer
 #  photo_id   :integer
 #
-class Like < ApplicationRecord
+class Comment < ApplicationRecord
 
   # Direct Associations
-  belongs_to :user, required: true, class_name: "User", foreign_key: "fan_id"
+  belongs_to :commenter, required: true, class_name: "User", foreign_key: "author_id"
 
   belongs_to :photo, required: true, class_name: "Photo", foreign_key: "photo_id", counter_cache: true
 
   # Validations
   validates :photo_id, presence: true
 
-  validates :photo_id, uniqueness: { scope: ["fan_id"], message: "already liked" }
+  validates :body, presence: true
 
-  validates :fan_id, presence: true
-  
+  validates :author_id, presence: true
 
 end
