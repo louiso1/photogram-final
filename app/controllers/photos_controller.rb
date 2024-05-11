@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  skip_before_action(:authenticate_user!, { :only => [:index] })
+
   def index
     matching_photos = Photo.all
 
@@ -59,4 +61,6 @@ class PhotosController < ApplicationController
 
     redirect_to("/photos", { :notice => "Photo deleted successfully."} )
   end
+
+
 end
