@@ -34,5 +34,9 @@ class Photo < ApplicationRecord
 
   validates :image, presence: true
 
+  # Scope
+  scope :public_photos, -> { joins(:user).where(users: { private: false }) }
+
+
 
 end
