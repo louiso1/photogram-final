@@ -1,6 +1,6 @@
 <h1>List of users</h1>
 
-<table border="1">
+<table border = "1">
   <tr>
     <th>
       Username
@@ -15,7 +15,7 @@
   </tr>
 
 
-  <% @users.do each |user|%>
+  <% @users.each do |user|%>
     <tr>
       <td>
         <%= user.username %>
@@ -26,9 +26,12 @@
       </td>
 
       <td>
+        
       </td>
 
       <td>
         <a href="/users/<%= user.username %>">Show details</a>
       </td>
     </tr>
+  <% end %>
+</table>
