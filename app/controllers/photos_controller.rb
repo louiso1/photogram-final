@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
     if current_user.present?
       @current_user = current_user
       user_following = @current_user.following
-      following_photos = user_following.
+      following_photos = user_following
     else
       matching_photos = public_photos
       @list_of_photos = matching_photos.order({ :created_at => :desc })
