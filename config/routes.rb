@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  devise_for :users
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: "users#index"
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+  
+  
+  # Routes for Users resource:
+  get("/users", { :controller => "users", :action => "index" })
+
+  get("/users/:username", { :controller => "users", :action => "show" })
+  
   # Routes for the Comment resource:
 
   # CREATE
@@ -75,10 +88,5 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root to: "photos#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
