@@ -32,5 +32,6 @@ class Photo < ApplicationRecord
 
   validates :image, presence: true
 
+  validates :owner, presence: true 
 
 end

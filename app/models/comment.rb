@@ -23,4 +23,6 @@ class Comment < ApplicationRecord
 
   validates :author_id, presence: true
 
+  validates :commenter, presence: true
+
 end

@@ -22,5 +22,6 @@ class Like < ApplicationRecord
 
   validates :fan_id, presence: true
   
+  validates :user, presence: true 
 
 end

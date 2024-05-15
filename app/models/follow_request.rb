@@ -23,6 +23,8 @@ class FollowRequest < ApplicationRecord
 
   validates :recipient_id, uniqueness: { scope: ["sender_id"], message: "already requested" }
 
-  
+  validates :sender, presence: true
+
+  validates :recipient, presence: true
   
 end

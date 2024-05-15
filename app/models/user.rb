@@ -47,9 +47,22 @@ class User < ApplicationRecord
 
   has_many :liked_photos, through: :likes, source: :photo
 
+  has_many :activity, through: :following, source: :liked_photos
+
+  has_many :commented_photos, through: :comments, source: :photo
+
+  # Scoped Indirect Associations
+  has_many :leaders, through: :accepted_sent_follow_requests, source: :recipient
+  
+  has_many :discover, through: :leaders, source: :liked_photos
+
   has_many :feed, through: :following, source: :own_photos
 
-  has_many :activity, through: :following, source: :liked_photos
+
+  # Scoped Direct Associations
+  has_many(:accepted_sent_follow_requests, -> { where status: "accepted" }, class_name: "FollowRequest", foreign_key: :sender_id)
+
+  has_many(:accepted_received_follow_requests, -> { where status: "accepted" }, class_name: "FollowRequest", foreign_key: :recipient_id)
 
   # Validations
   validates :username, presence: true
